@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>♟️ Myra's Chess Adventure!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="player-badge">
+                    <div class="player-avatar">
+                        <span class="avatar-emoji">👸</span>
+                    </div>
+                    <div class="player-name-section">
+                        <h1>Myra Rathore</h1>
+                        <span class="fide-id">FIDE ID: 558042920</span>
+                    </div>
+                </div>
+                <div class="header-ratings">
+                    <div class="rating-badge">
+                        <span class="rating-label">Standard</span>
+                        <span class="rating-value unrated">Unrated</span>
+                    </div>
+                    <div class="rating-badge">
+                        <span class="rating-label">Rapid</span>
+                        <span class="rating-value unrated">Unrated</span>
+                    </div>
+                    <div class="rating-badge">
+                        <span class="rating-label">Blitz</span>
+                        <span class="rating-value unrated">Unrated</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="top-navbar" id="topNavbar">
+            <div class="navbar-content">
+                <div class="navbar-brand">
+                    <span class="brand-emoji">♛</span>
+                    <span>Myra's Chess World</span>
+                </div>
+                <div class="navbar-links">
+                    <a href="#" class="nav-link active" data-tab="home">
+                        <span class="nav-emoji">🏠</span>
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-link" data-tab="fide-rating">
+                        <span class="nav-emoji">⭐</span>
+                        <span>FIDE Rating</span>
+                    </a>
+                    <a href="#" class="nav-link" data-tab="tournaments-played">
+                        <span class="nav-emoji">🏆</span>
+                        <span>Tournaments Played</span>
+                    </a>
+                    <a href="#" class="nav-link" data-tab="upcoming-tournaments">
+                        <span class="nav-emoji">📅</span>
+                        <span>Upcoming Tournaments</span>
+                    </a>
+                    <a href="#" class="nav-link" data-tab="national-championship">
+                        <span class="nav-emoji">🏅</span>
+                        <span>National Championship</span>
+                    </a>
+                    <a href="#" class="nav-link" data-tab="gallery">
+                        <span class="nav-emoji">📸</span>
+                        <span>Gallery</span>
+                    </a>
+                </div>
+                <button class="navbar-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <main class="tab-content">
+            <section class="tab-panel active" id="home">
+                <div class="home-hero">
+                    <div class="hero-chess-pieces">
+                        <span class="floating-piece p1">♔</span>
+                        <span class="floating-piece p2">♛</span>
+                        <span class="floating-piece p3">♜</span>
+                        <span class="floating-piece p4">♝</span>
+                        <span class="floating-piece p5">♚</span>
+                        <span class="floating-piece p6">🌸</span>
+                        <span class="floating-piece p7">✨</span>
+                    </div>
+                    <h1 class="home-title">🌟 Myra's Chess Adventure! 🌟</h1>
+                    <p class="home-subtitle">A young chess princess's magical journey from India to the world! 🏰✨</p>
+                </div>
+
+                <div class="profile-card story-card">
+                    <div class="story-header">
+                        <h2><i class="fas fa-book-open"></i> Chess Story of the Day</h2>
+                        <span class="story-date" id="storyDate"></span>
+                    </div>
+                    <div class="story-content" id="storyContent"></div>
+                </div>
+
+                <div class="home-quick-links">
+                    <div class="quick-link-card" data-tab="fide-rating">
+                        <span class="card-emoji">⭐</span>
+                        <h3>FIDE Rating</h3>
+                        <p>Real FIDE match history</p>
+                    </div>
+                    <div class="quick-link-card" data-tab="tournaments-played">
+                        <span class="card-emoji">🏆</span>
+                        <h3>Tournaments Played</h3>
+                        <p>Every published event</p>
+                    </div>
+                    <div class="quick-link-card" data-tab="upcoming-tournaments">
+                        <span class="card-emoji">🗓️</span>
+                        <h3>Upcoming Tournaments</h3>
+                        <p>U8 events &amp; more</p>
+                    </div>
+                    <div class="quick-link-card" data-tab="national-championship">
+                        <span class="card-emoji">🏅</span>
+                        <h3>National Championship</h3>
+                        <p>Live round-by-round update</p>
+                    </div>
+                    <div class="quick-link-card" data-tab="gallery">
+                        <span class="card-emoji">📸</span>
+                        <h3>Gallery</h3>
+                        <p>Photos from chess journey</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="fide-rating">
+                <h2 class="section-heading"><i class="fas fa-user"></i> Profile</h2>
+                <div class="profile-grid">
+                    <div class="profile-card">
+                        <h2><i class="fas fa-id-card"></i> Personal Information</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Full Name</label>
+                                <p>Rathore, Myra</p>
+                            </div>
+                            <div class="info-item">
+                                <label>FIDE ID</label>
+                                <p>558042920</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Federation</label>
+                                <p><img src="https://ratings.fide.com/images/flags/in.svg" alt="India" class="flag-icon"> India</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Birth Year</label>
+                                <p>2019</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Gender</label>
+                                <p>Female</p>
+                            </div>
+                            <div class="info-item">
+                                <label>FIDE Title</label>
+                                <p>None</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h2><i class="fas fa-star"></i> Current Ratings</h2>
+                        <div class="ratings-display">
+                            <div class="rating-card standard">
+                                <div class="rating-icon">
+                                    <i class="fas fa-chess-board"></i>
+                                </div>
+                                <div class="rating-details">
+                                    <h3>Standard</h3>
+                                    <p class="rating-number unrated">Not Rated</p>
+                                    <span class="rating-games">31+ standard games across 9 tournaments</span>
+                                </div>
+                            </div>
+                            <div class="rating-card rapid">
+                                <div class="rating-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="rating-details">
+                                    <h3>Rapid</h3>
+                                    <p class="rating-number unrated">Not Rated</p>
+                                    <span class="rating-games">2 rapid games from 1 FIDE event</span>
+                                </div>
+                            </div>
+                            <div class="rating-card blitz">
+                                <div class="rating-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="rating-details">
+                                    <h3>Blitz</h3>
+                                    <p class="rating-number unrated">Not Rated</p>
+                                    <span class="rating-games">No published blitz games yet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h2><i class="fas fa-link"></i> FIDE Profile</h2>
+                        <p class="profile-link-text">FIDE shows Myra as officially unrated, but the calculations extracts now include her real published tournament activity.</p>
+                        <a href="https://ratings.fide.com/profile/558042920" target="_blank" class="fide-link-btn">
+                            <i class="fas fa-external-link-alt"></i> Visit FIDE Profile
+                        </a>
+                    </div>
+                </div>
+
+                <h2 class="section-heading"><i class="fas fa-chart-line"></i> Rating History</h2>
+                <div class="profile-card">
+                    <h2><i class="fas fa-chart-line"></i> Rating Progress</h2>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" data-period="1">1 Year</button>
+                        <button class="chart-btn" data-period="2">2 Years</button>
+                        <button class="chart-btn" data-period="3">3 Years</button>
+                        <button class="chart-btn" data-period="all">All Time</button>
+                    </div>
+                    <div class="chart-placeholder">
+                        <canvas id="ratingChart"></canvas>
+                        <div class="no-data-message">
+                            <i class="fas fa-chart-area"></i>
+                            <p>Official rating still pending</p>
+                            <span>FIDE has published Myra's game activity, but all current lists still show Ro: 0 / unrated.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-table"></i> Rating History Table</h2>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Period</th>
+                                    <th>Standard</th>
+                                    <th>Std Games</th>
+                                    <th>Rapid</th>
+                                    <th>Rpd Games</th>
+                                    <th>Blitz</th>
+                                    <th>Blz Games</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>2025-10-01</td><td>Unrated</td><td>1</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2025-11-01</td><td>Unrated</td><td>4</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2025-12-01</td><td>Unrated</td><td>4+</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2026-02-01</td><td>Unrated</td><td>2</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2026-03-01</td><td>Unrated</td><td>6</td><td>Unrated</td><td>2</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2026-04-01</td><td>Unrated</td><td>2</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2026-05-01</td><td>Unrated</td><td>5</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                                <tr><td>2026-06-01</td><td>Unrated</td><td>8</td><td>&mdash;</td><td>0</td><td>&mdash;</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="muted-note">December 2025 includes one fully captured standard event plus a second SRR event with only partial published extract details.</p>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-trophy"></i> Tournament Results</h2>
+                    <div class="table-container">
+                        <table class="data-table tournament-results-table">
+                            <thead>
+                                <tr>
+                                    <th>Period</th>
+                                    <th>Event</th>
+                                    <th>Type</th>
+                                    <th>Games</th>
+                                    <th>Score</th>
+                                    <th>Rc</th>
+                                    <th>Rp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Oct 2025</td><td>ALL INDIA BELOW 1600 FIDE RATING CHESS TOURNAMENT 2025</td><td><span class="badge-std">Standard</span></td><td>1</td><td>0.0 / 1</td><td>1449</td><td>649</td></tr>
+                                <tr><td>Nov 2025</td><td>Vimana City 1st International Below 1700 FIDE Rated Chess Tournament</td><td><span class="badge-std">Standard</span></td><td>4</td><td>1.0 / 4</td><td>1468</td><td>1275</td></tr>
+                                <tr><td>Dec 2025</td><td>First Move International Below 1800 FIDE Rated Chess Tournament</td><td><span class="badge-std">Standard</span></td><td>3</td><td>0.0 / 3</td><td>1457</td><td>657</td></tr>
+                                <tr><td>Dec 2025</td><td>SRR Below 1800 International Open FIDE Rating Chess Tournament</td><td><span class="badge-std">Standard</span></td><td>1+</td><td>Partial</td><td>&mdash;</td><td>&mdash;</td></tr>
+                                <tr><td>Feb 2026</td><td>All India Below 1700 Fide rating chess tournament, Amravati 2026</td><td><span class="badge-std">Standard</span></td><td>2</td><td>0.0 / 2</td><td>1451</td><td>651</td></tr>
+                                <tr><td>Mar 2026</td><td>Akshaya Institutions 4th International Fide rated below 1800 chess tournament - 2026</td><td><span class="badge-std">Standard</span></td><td>6</td><td>0.5 / 6</td><td>1441</td><td>1040</td></tr>
+                                <tr><td>Mar 2026</td><td>Dehradun Open FIDE Rated Rapid Chess Tournament 2026</td><td><span class="badge-rpd">Rapid</span></td><td>2</td><td>0.0 / 2</td><td>1480</td><td>680</td></tr>
+                                <tr><td>Apr 2026</td><td>2nd Skillcraft International below 1800 FIDE Rated Chess Tournament</td><td><span class="badge-std">Standard</span></td><td>2</td><td>0.0 / 2</td><td>1458</td><td>658</td></tr>
+                                <tr><td>May 2026</td><td>12th BBCF - International Below 1700 FIDE Rated Open Chess Tournament</td><td><span class="badge-std">Standard</span></td><td>5</td><td>1.0 / 5</td><td>1431</td><td>1191</td></tr>
+                                <tr><td>Jun 2026</td><td>Warrior Chess Academy - International 2nd FIDE Rated Open Chess Tournament for Below 1650</td><td><span class="badge-std">Standard</span></td><td>8</td><td>2.5 / 8</td><td>1455</td><td>1314</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h2 class="section-heading"><i class="fas fa-chart-bar"></i> Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-gamepad"></i></div><div class="stat-info"><h3>Total Games</h3><p class="stat-number">33</p></div></div>
+                    <div class="stat-card"><div class="stat-icon win"><i class="fas fa-check-circle"></i></div><div class="stat-info"><h3>Wins</h3><p class="stat-number">4</p></div></div>
+                    <div class="stat-card"><div class="stat-icon draw"><i class="fas fa-handshake"></i></div><div class="stat-info"><h3>Draws</h3><p class="stat-number">1</p></div></div>
+                    <div class="stat-card"><div class="stat-icon loss"><i class="fas fa-times-circle"></i></div><div class="stat-info"><h3>Losses</h3><p class="stat-number">28</p></div></div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-stopwatch"></i> Performance Breakdown</h2>
+                    <div class="performance-grid">
+                        <div class="performance-card">
+                            <div class="performance-card-header"><span class="badge-std">Standard</span><strong>9 tournaments</strong></div>
+                            <ul class="performance-list">
+                                <li><span>Total games</span><strong>31+</strong></li>
+                                <li><span>Published score</span><strong>4.5+</strong></li>
+                                <li><span>Best Rp</span><strong>1314</strong></li>
+                                <li><span>Best event</span><strong>Warrior Chess Academy, Jun 2026</strong></li>
+                            </ul>
+                        </div>
+                        <div class="performance-card">
+                            <div class="performance-card-header"><span class="badge-rpd">Rapid</span><strong>1 tournament</strong></div>
+                            <ul class="performance-list">
+                                <li><span>Total games</span><strong>2</strong></li>
+                                <li><span>Published score</span><strong>0.0</strong></li>
+                                <li><span>Best Rp</span><strong>680</strong></li>
+                                <li><span>Best event</span><strong>Dehradun Open Rapid, Mar 2026</strong></li>
+                            </ul>
+                        </div>
+                        <div class="performance-card">
+                            <div class="performance-card-header"><span class="badge-blz">Blitz</span><strong>0 tournaments</strong></div>
+                            <ul class="performance-list">
+                                <li><span>Total games</span><strong>0</strong></li>
+                                <li><span>Published score</span><strong>0.0</strong></li>
+                                <li><span>Best Rp</span><strong>&mdash;</strong></li>
+                                <li><span>Status</span><strong>No blitz data yet</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-info-circle"></i> Player Summary</h2>
+                    <div class="summary-content">
+                        <p>Myra Rathore is a young chess player from <strong>India</strong>, born in <strong>2019</strong>, and already active on the FIDE circuit with published results across standard and rapid events. Even though every current list still shows <strong>Ro: 0</strong>, she now has a meaningful competitive record with real opponents, real scores, and a growing body of tournament experience.</p>
+                        <p>Her strongest published stretch so far came in <strong>June 2026</strong>, when she scored <strong>2.5/8</strong> at Warrior Chess Academy in Chennai for a <strong>1314 performance rating</strong>. Earlier highlights include her first published FIDE win against <strong>Ebenezer, Chanti Perla</strong> in November 2025 and another win over <strong>Poojitha, E</strong> in May 2026. 👑</p>
+                        <div class="milestone-section">
+                            <h3><i class="fas fa-flag-checkered"></i> Milestones</h3>
+                            <ul class="milestone-list">
+                                <li><i class="fas fa-check-circle" style="color: #e84393;"></i> FIDE registered and active under India ✓</li>
+                                <li><i class="fas fa-check-circle" style="color: #e84393;"></i> First published FIDE standard event: Hyderabad, Aug 2025 ✓</li>
+                                <li><i class="fas fa-check-circle" style="color: #e84393;"></i> First published FIDE win: Nov 2025 vs Ebenezer, Chanti Perla ✓</li>
+                                <li><i class="fas fa-check-circle" style="color: #e84393;"></i> First published rapid event: Dehradun Open Rapid, Mar 2026 ✓</li>
+                                <li><i class="fas fa-circle" style="color: #fd79a8;"></i> First official FIDE rating still pending</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="tournaments-played">
+                <div class="profile-card">
+                    <h2><i class="fas fa-trophy"></i> Tournaments Played</h2>
+                    <p class="data-source-note">Built from the supplied FIDE calculations extract for Myra Rathore (FIDE ID 558042920). Where the extract was truncated or did not include pairing colours, the app labels those fields as <strong>TBD</strong> instead of guessing.</p>
+                </div>
+
+                <div class="summary-stat-grid">
+                    <div class="summary-stat-card"><span class="summary-stat-label">Total Tournaments</span><strong class="summary-stat-value">10</strong></div>
+                    <div class="summary-stat-card"><span class="summary-stat-label">Total Games</span><strong class="summary-stat-value">33</strong></div>
+                    <div class="summary-stat-card"><span class="summary-stat-label">Games as White</span><strong class="summary-stat-value">TBD</strong></div>
+                    <div class="summary-stat-card"><span class="summary-stat-label">Games as Black</span><strong class="summary-stat-value">TBD</strong></div>
+                    <div class="summary-stat-card"><span class="summary-stat-label">Standard Events</span><strong class="summary-stat-value">9</strong></div>
+                    <div class="summary-stat-card"><span class="summary-stat-label">Rapid Events</span><strong class="summary-stat-value">1</strong></div>
+                </div>
+
+                <div class="color-results-grid">
+                    <div class="summary-stat-card compact"><span class="summary-stat-label">Wins</span><strong class="summary-stat-value">4</strong></div>
+                    <div class="summary-stat-card compact"><span class="summary-stat-label">Draws</span><strong class="summary-stat-value">1</strong></div>
+                    <div class="summary-stat-card compact"><span class="summary-stat-label">Losses</span><strong class="summary-stat-value">28</strong></div>
+                    <div class="summary-stat-card compact"><span class="summary-stat-label">Best Performance</span><strong class="summary-stat-value">1314</strong></div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-list"></i> Tournament Detail Table</h2>
+                    <div class="table-container">
+                        <table class="data-table detail-table">
+                            <thead>
+                                <tr>
+                                    <th>Opponent</th>
+                                    <th>Opp Rating</th>
+                                    <th>Fed</th>
+                                    <th>Color</th>
+                                    <th>Score</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Oct 2025 · ALL INDIA BELOW 1600 FIDE RATING CHESS TOURNAMENT 2025</strong> · Hyderabad, IND · 2025-08-29 to 2025-08-31 · <span class="badge-std">Standard</span> · Rc 1449 · Rp 649 · Score 0.0/1</td></tr>
+                                <tr><td class="opponent-cell">Kolcharam, Hasini</td><td>1449</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td>First published FIDE standard game in supplied extract.</td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Nov 2025 · Vimana City 1st International Below 1700 FIDE Rated Chess Tournament</strong> · Thanjavur, IND · 2025-09-27 to 2025-09-29 · <span class="badge-std">Standard</span> · Rc 1468 · Rp 1275 · Score 1.0/4</td></tr>
+                                <tr><td class="opponent-cell">Ranjani, S</td><td>1516</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Varunesh, M</td><td>1441</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Ebenezer, Chanti Perla</td><td>1431</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge win">1.00</span></td><td>First published FIDE win.</td></tr>
+                                <tr><td class="opponent-cell">Tholkappiyan, S</td><td>1483</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Dec 2025 · First Move International Below 1800 FIDE Rated Chess Tournament</strong> · Mysuru, IND · 2025-11-07 to 2025-11-09 · <span class="badge-std">Standard</span> · Rc 1457 · Rp 657 · Score 0.0/3</td></tr>
+                                <tr><td class="opponent-cell">Venkatesh, Elumalai</td><td>1483</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Adarsh, K</td><td>1434</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Medhashree, C R</td><td>1454</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Dec 2025 · SRR Below 1800 International Open FIDE Rating Chess Tournament</strong> · Vijayawada, IND · 2025-11-22 to 2025-11-24 · <span class="badge-std">Standard</span> · At least 1 published game</td></tr>
+                                <tr><td class="opponent-cell">Partial FIDE extract</td><td>&mdash;</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td>The supplied calculations tab was truncated before the full opponent list appeared.</td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Feb 2026 · All India Below 1700 Fide rating chess tournament, Amravati 2026</strong> · Amravati, IND · 2026-01-23 to 2026-01-25 · <span class="badge-std">Standard</span> · Rc 1451 · Rp 651 · Score 0.0/2</td></tr>
+                                <tr><td class="opponent-cell">Samruddhi, Ganesh Deshmukh</td><td>1500</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Kunj, Shrimali</td><td>1402</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Mar 2026 · Akshaya Institutions 4th International Fide rated below 1800 chess tournament - 2026</strong> · Coimbatore, IND · 2026-02-13 to 2026-02-15 · <span class="badge-std">Standard</span> · Rc 1441 · Rp 1040 · Score 0.5/6</td></tr>
+                                <tr><td class="opponent-cell">Sanjai, S</td><td>1504</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Jagath Varshan P</td><td>1402</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Vishalini, C M</td><td>1463</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Gnapika Reddy G</td><td>1413</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Kamalakkannan, S P</td><td>1410</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td>Result not visible in supplied summary.</td></tr>
+                                <tr><td class="opponent-cell">Additional opponent</td><td>&mdash;</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td>Published tournament total is 0.5/6; final two round details were only partially captured.</td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Mar 2026 · Dehradun Open FIDE Rated Rapid Chess Tournament 2026</strong> · Dehradun, IND · 2026-02-07 to 2026-02-08 · <span class="badge-rpd">Rapid</span> · Rc 1480 · Rp 680 · Score 0.0/2</td></tr>
+                                <tr><td class="opponent-cell">Md., Rashid</td><td>1543</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Dileep Kumar Sahu</td><td>1416</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Apr 2026 · 2nd Skillcraft International below 1800 FIDE Rated Chess Tournament</strong> · Delhi, IND · 2026-03-27 to 2026-03-29 · <span class="badge-std">Standard</span> · Rc 1458 · Rp 658 · Score 0.0/2</td></tr>
+                                <tr><td class="opponent-cell">Kavish, Agrawal</td><td>1505</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Pranav, Gupta</td><td>1411</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>May 2026 · 12th BBCF - International Below 1700 FIDE Rated Open Chess Tournament</strong> · Chennai, IND · 2026-04-12 to 2026-04-14 · <span class="badge-std">Standard</span> · Rc 1431 · Rp 1191 · Score 1.0/5</td></tr>
+                                <tr><td class="opponent-cell">George, Daniel</td><td>1487</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Shanchith, Vinoth</td><td>1412</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Mourya, Rama Surya M</td><td>1416</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">S,jerry, Matthew</td><td>1413</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Poojitha, E</td><td>1425</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge win">1.00</span></td><td>Second clearly published win in the supplied extract.</td></tr>
+
+                                <tr class="tournament-header-row"><td colspan="6"><strong>Jun 2026 · Warrior Chess Academy - International 2nd FIDE Rated Open Chess Tournament for Below 1650</strong> · Chennai, IND · 2026-04-25 to 2026-04-27 · <span class="badge-std">Standard</span> · Rc 1455 · Rp 1314 · Score 2.5/8</td></tr>
+                                <tr><td class="opponent-cell">Arisapu, Vedhaanshi</td><td>1469</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge win">1.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Yogeshwaran, S</td><td>1513</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Dharmik Reddy Kona</td><td>1455</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Isaac, Emmanuel S</td><td>1427</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge loss">0.00</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Tharun, V M</td><td>1422</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td>Later-round details not fully visible in the supplied extract.</td></tr>
+                                <tr><td class="opponent-cell">Additional opponent 1</td><td>&mdash;</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Additional opponent 2</td><td>&mdash;</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td></td></tr>
+                                <tr><td class="opponent-cell">Additional opponent 3</td><td>&mdash;</td><td>IND</td><td><span class="color-dot unknown"></span><span class="color-text">TBD</span></td><td><span class="result-badge partial">TBD</span></td><td>The remaining four games account for Myra's final 1.5 points in this event.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="upcoming-tournaments">
+                <div class="profile-card">
+                    <h2><i class="fas fa-calendar-alt"></i> Upcoming Tournaments for Myra (U8 / Open Girls)</h2>
+                    <p class="data-source-note">
+                        Tournaments sourced from
+                        <a href="https://aicf.in/" target="_blank">All India Chess Federation (AICF)</a> and
+                        <a href="https://www.fide.com" target="_blank">FIDE Calendar</a>.
+                        Showing events eligible for girls born 2019 (U8 category or Open).
+                    </p>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-flag"></i> National (India)</h2>
+                    <div class="tournament-list">
+                        <div class="tournament-item">
+                            <div class="tournament-date">
+                                <span class="date-day">Jul–Aug</span>
+                                <span class="date-month">2026</span>
+                            </div>
+                            <div class="tournament-info">
+                                <h3>National Under-8 Girls Championship 2026</h3>
+                                <p class="tournament-meta">
+                                    <span><i class="fas fa-map-pin"></i> India (TBA)</span>
+                                    <span><i class="fas fa-tag"></i> National Championship</span>
+                                    <span><i class="fas fa-chess-pawn"></i> U8 Girls</span>
+                                </p>
+                                <p class="tournament-desc">AICF National Championship for U8 Girls category. The premier national event for young girls.</p>
+                                <p class="tournament-link"><a href="https://aicf.in/" target="_blank"><i class="fas fa-external-link-alt"></i> AICF Website</a></p>
+                            </div>
+                            <span class="eligibility-badge eligible">U8 Girls ✓</span>
+                        </div>
+
+                        <div class="tournament-item">
+                            <div class="tournament-date">
+                                <span class="date-day">TBA</span>
+                                <span class="date-month">2026</span>
+                            </div>
+                            <div class="tournament-info">
+                                <h3>State-Level Under-8 Championship</h3>
+                                <p class="tournament-meta">
+                                    <span><i class="fas fa-map-pin"></i> State (TBA)</span>
+                                    <span><i class="fas fa-tag"></i> State Championship</span>
+                                    <span><i class="fas fa-chess-pawn"></i> U8 Girls / Open</span>
+                                </p>
+                                <p class="tournament-desc">State-level chess championship. Qualifies for national level. Check with your state chess association for dates.</p>
+                                <p class="tournament-link"><a href="https://aicf.in/" target="_blank"><i class="fas fa-external-link-alt"></i> AICF Calendar</a></p>
+                            </div>
+                            <span class="eligibility-badge eligible">U8 ✓</span>
+                        </div>
+
+                        <div class="tournament-item">
+                            <div class="tournament-date">
+                                <span class="date-day">TBA</span>
+                                <span class="date-month">2026</span>
+                            </div>
+                            <div class="tournament-info">
+                                <h3>FIDE Rated Open Tournament</h3>
+                                <p class="tournament-meta">
+                                    <span><i class="fas fa-map-pin"></i> India</span>
+                                    <span><i class="fas fa-tag"></i> Open</span>
+                                    <span><i class="fas fa-chess-pawn"></i> All ages</span>
+                                </p>
+                                <p class="tournament-desc">Various FIDE-rated open tournaments are held across India throughout the year. Great opportunity for more rated games!</p>
+                                <p class="tournament-link"><a href="https://aicf.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Find Tournaments</a></p>
+                            </div>
+                            <span class="eligibility-badge eligible">Eligible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-globe-asia"></i> Asian / International</h2>
+                    <div class="tournament-list">
+                        <div class="tournament-item featured">
+                            <div class="tournament-date">
+                                <span class="date-day">TBA</span>
+                                <span class="date-month">2026</span>
+                            </div>
+                            <div class="tournament-info">
+                                <h3>Asian Youth Chess Championship 2026</h3>
+                                <p class="tournament-meta">
+                                    <span><i class="fas fa-map-pin"></i> Asia (TBA)</span>
+                                    <span><i class="fas fa-tag"></i> Continental Championship</span>
+                                    <span><i class="fas fa-chess-pawn"></i> U8 Girls</span>
+                                </p>
+                                <p class="tournament-desc">Asian continental championship for youth. Registration through AICF required.</p>
+                                <p class="tournament-link"><a href="https://aicf.in/" target="_blank"><i class="fas fa-external-link-alt"></i> AICF Info</a></p>
+                            </div>
+                            <span class="eligibility-badge eligible">U8 Girls ✓</span>
+                        </div>
+
+                        <div class="tournament-item featured">
+                            <div class="tournament-date">
+                                <span class="date-day">TBA</span>
+                                <span class="date-month">2026</span>
+                            </div>
+                            <div class="tournament-info">
+                                <h3>World Youth Chess Championship 2026</h3>
+                                <p class="tournament-meta">
+                                    <span><i class="fas fa-map-pin"></i> TBA</span>
+                                    <span><i class="fas fa-tag"></i> World Championship</span>
+                                    <span><i class="fas fa-chess-pawn"></i> U8 Girls</span>
+                                </p>
+                                <p class="tournament-desc">FIDE World Youth Championship with U8 Girls category. The ultimate global stage for young chess players!</p>
+                                <p class="tournament-link"><a href="https://www.fide.com" target="_blank"><i class="fas fa-external-link-alt"></i> FIDE Calendar</a></p>
+                            </div>
+                            <span class="eligibility-badge eligible">U8 Girls ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card info-note-card">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Eligibility Note:</strong>
+                        <p>Myra Rathore was born in 2019, making her eligible for U8 (Under 8) category tournaments in 2026.
+                        Events shown include U8 Girls categories.
+                        Dates and details may change — always verify with AICF or the organizing body before registering.
+                        Source: <a href="https://aicf.in/" target="_blank">All India Chess Federation</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="national-championship">
+                <div class="profile-card championship-hero-card">
+                    <div class="championship-hero-header">
+                        <div>
+                            <h2><i class="fas fa-trophy"></i> 39th National Under-7 Girls Chess Championship – 2026</h2>
+                            <p class="data-source-note">
+                                India's top young chess queens are battling it out right now, and Myra is off to a winning start!
+                            </p>
+                        </div>
+                        <span class="live-chip"><span class="live-dot"></span>LIVE NOW</span>
+                    </div>
+                    <div class="tournament-list">
+                        <div class="tournament-item featured championship-event-card">
+                            <div class="tournament-date">
+                                <span class="date-day">30 Jun</span>
+                                <span class="date-month">to 4 Jul 2026</span>
+                            </div>
+                            <div class="tournament-info">
+                                <h3>National Championship Stage</h3>
+                                <p class="tournament-meta">
+                                    <span><i class="fas fa-map-pin"></i> Venue details on Chess-Results</span>
+                                    <span><i class="fas fa-chess-board"></i> 9 Swiss Rounds</span>
+                                    <span><i class="fas fa-flag"></i> Punjab</span>
+                                </p>
+                                <p class="tournament-desc">Myra Rathore (FIDE ID 558042920) is representing Punjab in the girls national championship and has already scored a Round 1 win.</p>
+                                <p class="tournament-link championship-link">
+                                    <a href="https://s2.chess-results.com/tnr1430075.aspx?lan=1&art=9&fed=IND&snr=110" target="_blank"><i class="fas fa-bolt"></i> View live results on Chess-Results</a>
+                                </p>
+                            </div>
+                            <span class="eligibility-badge eligible">National Stage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-chart-line"></i> Myra's Current Standing</h2>
+                    <div class="summary-stat-grid championship-stat-grid">
+                        <div class="summary-stat-card">
+                            <span class="summary-stat-label">Starting Rank</span>
+                            <strong class="summary-stat-value">110</strong>
+                        </div>
+                        <div class="summary-stat-card">
+                            <span class="summary-stat-label">Current Points</span>
+                            <strong class="summary-stat-value">1 / 1</strong>
+                        </div>
+                        <div class="summary-stat-card">
+                            <span class="summary-stat-label">Overall Rank</span>
+                            <strong class="summary-stat-value">56</strong>
+                        </div>
+                        <div class="summary-stat-card">
+                            <span class="summary-stat-label">State / FIDE ID</span>
+                            <strong class="summary-stat-value championship-meta-value">Punjab<br>558042920</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h2><i class="fas fa-list-ol"></i> Round-by-Round Results</h2>
+                    <div class="table-container">
+                        <table class="data-table detail-table championship-results-table">
+                            <thead>
+                                <tr>
+                                    <th>Round</th>
+                                    <th>Board</th>
+                                    <th>Color</th>
+                                    <th>Opponent</th>
+                                    <th>Opponent State</th>
+                                    <th>Opponent Rtg</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>36</td>
+                                    <td><span class="color-dot black"></span><span class="color-text">Black</span></td>
+                                    <td class="opponent-cell">Ayona, Pandey</td>
+                                    <td>Uttarakhand</td>
+                                    <td>0</td>
+                                    <td><span class="result-badge win">✓ 1</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>16</td>
+                                    <td><span class="color-dot white"></span><span class="color-text">White</span></td>
+                                    <td class="opponent-cell">Aaradhya, R</td>
+                                    <td>Tamil Nadu</td>
+                                    <td>0</td>
+                                    <td>
+                                        <span class="result-badge upcoming"><span class="live-dot"></span>Upcoming</span>
+                                        <div class="round-note">Scheduled for 4:30 PM today</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="profile-card info-note-card championship-live-note">
+                    <i class="fas fa-satellite-dish"></i>
+                    <div>
+                        <strong>This tournament is LIVE!</strong>
+                        <p>Results are updated as rounds complete. 9 rounds, 30 Jun – 4 Jul 2026.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="gallery">
+                <div class="profile-card">
+                    <h2><i class="fas fa-images"></i> Chess Gallery</h2>
+                    <p class="data-source-note">Photos from Myra's chess journey and tournament experiences.</p>
+                </div>
+                <div class="gallery-placeholder">
+                    <div class="profile-card" style="text-align: center; padding: 60px 20px;">
+                        <span style="font-size: 64px; display: block; margin-bottom: 16px;">📸🌸</span>
+                        <h3 style="color: var(--primary); margin-bottom: 8px;">Coming Soon!</h3>
+                        <p style="color: var(--text-muted);">Myra's chess photos will be added here as her journey unfolds! 🌟</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-img" id="lightbox-img" src="" alt="">
+                <div class="lightbox-caption" id="lightbox-caption"></div>
+            </div>
+        </main>
+        <footer class="app-footer">
+            <p>Data sourced from <a href="https://ratings.fide.com/profile/558042920" target="_blank">FIDE Ratings</a> |
+            Last updated: June 2026 calculations extract</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
