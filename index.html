@@ -611,7 +611,7 @@
                                     <span><i class="fas fa-chess-board"></i> 9 Swiss Rounds</span>
                                     <span><i class="fas fa-flag"></i> Punjab</span>
                                 </p>
-                                <p class="tournament-desc">Myra Rathore (FIDE ID 558042920) is representing Punjab in the girls national championship and is on a winning streak — 2 wins out of 2!</p>
+                                <p class="tournament-desc" id="nc-desc">Myra Rathore (FIDE ID 558042920) is representing Punjab in the girls national championship and is on a winning streak — 2 wins out of 2!</p>
                                 <p class="tournament-link championship-link">
                                     <a href="https://s2.chess-results.com/tnr1430075.aspx?lan=1&art=9&fed=IND&snr=110" target="_blank"><i class="fas fa-bolt"></i> View live results on Chess-Results</a>
                                 </p>
@@ -630,11 +630,11 @@
                         </div>
                         <div class="summary-stat-card">
                             <span class="summary-stat-label">Current Points</span>
-                            <strong class="summary-stat-value">2 / 2</strong>
+                            <strong class="summary-stat-value" id="nc-points">2 / 2</strong>
                         </div>
                         <div class="summary-stat-card">
                             <span class="summary-stat-label">Overall Rank</span>
-                            <strong class="summary-stat-value">24</strong>
+                            <strong class="summary-stat-value" id="nc-rank">24</strong>
                         </div>
                         <div class="summary-stat-card">
                             <span class="summary-stat-label">State / FIDE ID</span>
@@ -658,7 +658,7 @@
                                     <th>Result</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="nc-results-body">
                                 <tr>
                                     <td>1</td>
                                     <td>36</td>
@@ -687,6 +687,7 @@
                     <div>
                         <strong>This tournament is LIVE!</strong>
                         <p>Results are updated as rounds complete. 9 rounds, 30 Jun – 4 Jul 2026.</p>
+                        <p id="nc-last-updated" style="font-size: 0.85em; color: #888; margin-top: 4px;"></p>
                     </div>
                 </div>
             </section>
