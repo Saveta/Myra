@@ -172,3 +172,175 @@ function openLightbox(element) {
 function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
 }
+
+// =======================================================
+// LIVE National Championship Results from Chess-Results.com
+// =======================================================
+(function () {
+    var CHESS_RESULTS_URL = 'https://s2.chess-results.com/tnr1430075.aspx?lan=1&art=9&fed=IND&snr=110';
+    // CORS proxies to try in order (fallback chain)
+    var CORS_PROXIES = [
+        'https://api.allorigins.win/raw?url=',
+        'https://corsproxy.io/?url=',
+        'https://api.codetabs.com/v1/proxy?quest='
+    ];
+
+    function fetchLiveResults() {
+        var statusEl = document.getElementById('nc-last-updated');
+        if (statusEl) statusEl.textContent = '⏳ Fetching live results from Chess-Results...';
+        tryProxy(0);
+    }
+
+    function tryProxy(index) {
+        if (index >= CORS_PROXIES.length) {
+            var statusEl = document.getElementById('nc-last-updated');
+            if (statusEl) statusEl.textContent = '⚠️ Could not fetch live data. Showing cached results.';
+            return;
+        }
+        var proxyUrl = CORS_PROXIES[index] + encodeURIComponent(CHESS_RESULTS_URL);
+        fetch(proxyUrl)
+            .then(function (response) {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.text();
+            })
+            .then(function (html) {
+                if (html.indexOf('Rathore, Myra') === -1) throw new Error('Invalid response');
+                parseAndUpdate(html);
+            })
+            .catch(function () {
+                tryProxy(index + 1);
+            });
+    }
+
+    function parseAndUpdate(html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+
+        // Extract player info from the info table
+        var infoCells = doc.querySelectorAll('table.CRs1 tr');
+        var points = '', rank = '', perfRating = '';
+        infoCells.forEach(function (row) {
+            var cells = row.querySelectorAll('td.CR');
+            if (cells.length >= 2) {
+                var label = cells[0].textContent.trim();
+                var value = cells[1].textContent.trim();
+                if (label === 'Points') points = value;
+                if (label === 'Rank') rank = value;
+                if (label === 'Performance rating') perfRating = value;
+            }
+        });
+
+        // Extract round results from the second CRs1 table
+        var tables = doc.querySelectorAll('table.CRs1');
+        var roundsTable = tables.length > 1 ? tables[1] : null;
+        var rounds = [];
+        if (roundsTable) {
+            var rows = roundsTable.querySelectorAll('tr:not(.CRg1b)');
+            rows.forEach(function (row) {
+                var cells = row.querySelectorAll('td');
+                if (cells.length < 10) return;
+
+                var roundNum = cells[0].textContent.trim();
+                var board = cells[1].textContent.trim();
+                var opponentLink = cells[4].querySelector('a');
+                var opponentName = opponentLink ? opponentLink.textContent.trim() : cells[4].textContent.trim();
+                var opponentRtg = cells[5].textContent.trim();
+                var opponentState = cells[7].textContent.trim();
+
+                // Determine color: FarbewT = White, FarbesT = Black
+                var colorDiv = cells[9].querySelector('div.FarbewT, div.FarbesT');
+                var color = 'unknown';
+                if (colorDiv) {
+                    color = colorDiv.classList.contains('FarbewT') ? 'white' : 'black';
+                }
+                // Also check for "- " prefix which means Black (default/forfeit notation)
+                var resultText = cells[9].textContent.trim();
+                if (resultText.indexOf('- ') === 0) color = 'black';
+                if (resultText.indexOf('+ ') === 0) color = 'white';
+
+                // Parse result
+                var result = '';
+                var resultClass = 'upcoming';
+                // Check for result text after color div
+                var resultCell = cells[9];
+                var innerTable = resultCell.querySelector('table');
+                if (innerTable) {
+                    var innerCells = innerTable.querySelectorAll('td');
+                    var rawResult = innerCells.length > 1 ? innerCells[1].textContent.trim() : '';
+                    if (rawResult === '1') { result = '✓ 1'; resultClass = 'win'; }
+                    else if (rawResult === '0') { result = '✗ 0'; resultClass = 'loss'; }
+                    else if (rawResult === '½') { result = '½'; resultClass = 'draw'; }
+                    else if (rawResult === '') { result = 'Upcoming'; resultClass = 'upcoming'; }
+                    else { result = rawResult; resultClass = 'upcoming'; }
+                } else {
+                    // Forfeit/default results like "- 1K" or "+ 0K"
+                    if (resultText.indexOf('1K') !== -1 || resultText.indexOf('1 ') !== -1) {
+                        result = '✓ 1'; resultClass = 'win';
+                    } else if (resultText.indexOf('0K') !== -1 || resultText.indexOf('0 ') !== -1) {
+                        result = '✗ 0'; resultClass = 'loss';
+                    } else {
+                        result = resultText || 'Upcoming'; resultClass = 'upcoming';
+                    }
+                }
+
+                rounds.push({
+                    round: roundNum, board: board, color: color,
+                    opponent: opponentName, state: opponentState,
+                    rating: opponentRtg, result: result, resultClass: resultClass
+                });
+            });
+        }
+
+        // Count total rounds played (with actual results)
+        var completedRounds = rounds.filter(function (r) { return r.resultClass !== 'upcoming'; }).length;
+
+        // Update the DOM
+        var pointsEl = document.getElementById('nc-points');
+        if (pointsEl && points) pointsEl.textContent = points + ' / ' + completedRounds;
+
+        var rankEl = document.getElementById('nc-rank');
+        if (rankEl && rank) rankEl.textContent = rank;
+
+        var descEl = document.getElementById('nc-desc');
+        if (descEl && points) {
+            var wins = rounds.filter(function (r) { return r.resultClass === 'win'; }).length;
+            var perf = perfRating && perfRating !== '0' ? ' (Performance: ' + perfRating + ')' : '';
+            descEl.textContent = 'Myra Rathore (FIDE ID 558042920) is representing Punjab — '
+                + wins + ' win' + (wins !== 1 ? 's' : '') + ' in ' + completedRounds + ' round'
+                + (completedRounds !== 1 ? 's' : '') + ', currently ranked #' + rank + perf + '!';
+        }
+
+        // Rebuild results table
+        var tbody = document.getElementById('nc-results-body');
+        if (tbody && rounds.length > 0) {
+            tbody.innerHTML = '';
+            rounds.forEach(function (r) {
+                var colorDot = '<span class="color-dot ' + r.color + '"></span>'
+                    + '<span class="color-text">' + (r.color === 'white' ? 'White' : r.color === 'black' ? 'Black' : '—') + '</span>';
+                var resultBadge = r.resultClass === 'upcoming'
+                    ? '<span class="result-badge upcoming"><span class="live-dot"></span>' + r.result + '</span>'
+                    : '<span class="result-badge ' + r.resultClass + '">' + r.result + '</span>';
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + r.round + '</td><td>' + r.board + '</td>'
+                    + '<td>' + colorDot + '</td>'
+                    + '<td class="opponent-cell">' + r.opponent + '</td>'
+                    + '<td>' + r.state + '</td><td>' + r.rating + '</td>'
+                    + '<td>' + resultBadge + '</td>';
+                tbody.appendChild(tr);
+            });
+        }
+
+        var statusEl = document.getElementById('nc-last-updated');
+        if (statusEl) {
+            var now = new Date();
+            statusEl.textContent = '✅ Live data loaded at ' + now.toLocaleTimeString()
+                + ' — auto-refreshes every 5 minutes';
+        }
+    }
+
+    // Fetch on page load and auto-refresh every 5 minutes
+    if (document.getElementById('nc-results-body')) {
+        fetchLiveResults();
+        setInterval(fetchLiveResults, 5 * 60 * 1000);
+    }
+})();
